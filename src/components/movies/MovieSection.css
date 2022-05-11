@@ -1,0 +1,20 @@
+.section{
+margin-left: 20px;
+}
+
+.section-posters{
+  display:flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+
+}
+
+.section-posters::-webkit-scrollbar{
+  display:none;
+}
+
+h2{
+  text-align: left;
+  color:white;
+}
+

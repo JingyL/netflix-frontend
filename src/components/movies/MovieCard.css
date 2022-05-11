@@ -1,0 +1,19 @@
+
+.posters{
+  object-fit: contain;
+  max-height: 100px;
+  margin-right: 10px;
+  transition: transform 450ms;
+}
+
+.posters:hover{
+  transform:scale(1.08);
+}
+
+.posters-larger{
+  max-height: 250px;
+}
+
+.posters-larger:hover{
+  transform:scale(1.09);
+}
