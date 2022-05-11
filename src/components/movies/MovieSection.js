@@ -10,6 +10,7 @@ const base_URL = "http://image.tmdb.org/t/p/original/";
 function MovieSection({title, fetchData, isLargeRow}) {
   const [movies, setMovies] = useState([])
   const [trailerUrl, setTrailerUrl] = useState("")
+  const [error, setError] = useState("")
 
   useEffect(() => {
     async function getData() {
@@ -32,18 +33,28 @@ function MovieSection({title, fetchData, isLargeRow}) {
     }
   }
 
-  function handleClick(movie){
-    if (trailerUrl){
+  function handleClick(movie, id){
+    if (trailerUrl || error){
       setTrailerUrl("")
+      setError("")
     }else{
-      console.log("@@@")
-      console.log(movie)
-      movieTrailer(movie || "")
+      movieTrailer(movie, { tmdbId: id})
       .then((url=>{
+        if (!url){
+          let movie_name = splitMoivieName(movie)
+          setError(`Link cannot find, please reach to https://www.themoviedb.org/search?query=${movie_name}`)
+          console.log(movie_name)
+        }
         const urlParams = new URLSearchParams(new URL(url).search);
+        console.log(urlParams)
         setTrailerUrl(urlParams.get("v"))
       }))
     }
+  }
+
+  function splitMoivieName(name){
+    let arr = name.split(" ")
+    return arr.join("%")
   }
 // why can't just pass movie here and use movie.poster_path in moviecard?
   return (
@@ -60,7 +71,8 @@ function MovieSection({title, fetchData, isLargeRow}) {
         />
       ))}
       </div>
-        {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}></YouTube>}
+        {trailerUrl && !error && <YouTube videoId={trailerUrl} opts={opts}></YouTube>}
+        {error && <p className="error-msg">{error}</p>}
     </div>
   )
 }

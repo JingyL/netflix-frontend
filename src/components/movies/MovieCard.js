@@ -8,9 +8,9 @@ function MovieCard({ id, image, name, isLargeRow, handleClick}) {
     <div>
       {isLargeRow
       ? <img key={id} className="posters posters-larger" src={`${base_URL}${image}`} alt={name}
-      onClick={()=>handleClick(name)}></img> 
+      onClick={()=>handleClick(name, id)}></img> 
       : <img key={id} className="posters" src={`${base_URL}${image}`} alt={name}
-      onClick={()=>handleClick(name)}></img> 
+      onClick={()=>handleClick(name, id)}></img> 
       }
 
     </div>
