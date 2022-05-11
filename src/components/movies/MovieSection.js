@@ -56,7 +56,8 @@ function MovieSection({title, fetchData, isLargeRow}) {
     let arr = name.split(" ")
     return arr.join("%")
   }
-// why can't just pass movie here and use movie.poster_path in moviecard?
+
+
   return (
     <div className="section">
       <h2>{title}</h2>
@@ -71,8 +72,15 @@ function MovieSection({title, fetchData, isLargeRow}) {
         />
       ))}
       </div>
-        {trailerUrl && !error && <YouTube videoId={trailerUrl} opts={opts}></YouTube>}
-        {error && <p className="error-msg">{error}</p>}
+        {trailerUrl && !error && <>
+        <YouTube videoId={trailerUrl} opts={opts}></YouTube>
+        <button>Add to MovieLists</button>
+        </>}
+        {error && <>
+        <p className="error-msg">{error}</p>
+         <button>Add to MovieLists</button>
+        </>}
+        
     </div>
   )
 }
