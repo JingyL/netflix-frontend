@@ -1,20 +1,23 @@
-import React, { useEffect }  from 'react';
+import React, { useContext, useEffect }  from 'react';
 import { useState } from 'react';
 import "./Banner.css";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
+import UserContext from '../../hooks/UserContext';
 
-function Banner({fetchData}) {
+function Banner({fetchData, addToMovieList}) {
+  const { addedMovies, setAddedMovies } = useContext(UserContext);
   const [movie, setMovie] = useState([])
   const [url, setUrl]= useState("")
   const [description, setDescription]= useState("")
   const [trailerUrl, setTrailerUrl] = useState("")
   const [error, setError] = useState("")
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     async function getData() {
       let res = await fetchData();
-      console.log(res.data.results[Math.floor(Math.random()*(res.data.results.length-1))])
       let random_movie = res.data.results[Math.floor(Math.random()*(res.data.results.length-1))];
       setMovie(random_movie);
       setUrl(random_movie.backdrop_path);
@@ -23,8 +26,8 @@ function Banner({fetchData}) {
     getData();
   }, [fetchData]);
 
+
   function truncateString(str, num) {
-    console.log(str)
     if (str.length > num) {
       return str.slice(0, num) + "...";
     } else {
@@ -50,12 +53,20 @@ function Banner({fetchData}) {
         if (!url){
           let movie_name = splitMoivieName(movie)
           setError(`Link cannot find, please reach to https://www.themoviedb.org/search?query=${movie_name}`)
-          console.log(movie_name)
         }
         const urlParams = new URLSearchParams(new URL(url).search);
-        console.log(urlParams)
         setTrailerUrl(urlParams.get("v"))
       }))
+    }
+  }
+
+  async function handleAdd(e) {
+    e.preventDefault();
+    let response = await addToMovieList(movie.name, movie.id);
+    if (response["success"]) {
+      setSuccessMsg(response["success"])
+    } else {
+      setErrorMsg(response.error);
     }
   }
 
@@ -64,6 +75,8 @@ function Banner({fetchData}) {
     return arr.join("%")
   }
   
+  console.log("banner", addedMovies, [movie.id, movie.name])
+
   return (
     <>
       <header className="banner"
@@ -76,7 +89,14 @@ function Banner({fetchData}) {
         <h1 className="banner-title">{movie.name}</h1>
         <div className="banner-buttons">
           <button className="banner-button" onClick={()=>handleClick(movie.name, movie.id) }>Play</button>
-          <button className="banner-button">My List</button>
+
+          {
+            JSON.stringify(addedMovies).indexOf(JSON.stringify([movie.id, movie.name]))  > -1 || successMsg
+           ? <button className="banner-button-added">Added</button>
+          : <button className="banner-button" onClick={handleAdd}> + My List</button>
+
+          }
+  
         </div>
         <h1 className="banner-description">{description}</h1>
         </div>

@@ -1,0 +1,22 @@
+.movieList{
+  margin-left: 2%;
+  margin-top: 2%;
+  padding-top: 5%;
+}
+
+
+.nav-list-page{
+  margin-top: 20px;
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: 98%;
+  /* justify-content: space-between; */
+  padding-left: 15px;
+}
+
+.section-posters-list{
+  display:flex;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+}

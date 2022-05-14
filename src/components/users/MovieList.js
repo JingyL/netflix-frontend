@@ -1,27 +1,29 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import MovieCard from './MovieCard';
-import "./MovieSection.css";
+import React, { useContext, useEffect, useState }  from 'react';
+import UserContext from '../../hooks/UserContext';
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
+import MovieCard from '../movies/MovieCard';
+import "./MovieList.css"
+import Navbar from '../navbar/Navbar';
 
-
-const base_URL = "http://image.tmdb.org/t/p/original/";
-
-function MovieSection({title, fetchData, isLargeRow, addToMovieList}) {
+function MovieList({fetchData, addToMovieList, isLargeRow}) {
+  const { addedMovies, setAddedMovies } = useContext(UserContext);
   const [movies, setMovies] = useState([])
   const [trailerUrl, setTrailerUrl] = useState("")
   const [error, setError] = useState("")
   const [hide, setHide] = useState([true, 0])
 
-// Load movies data based on it's section
   useEffect(() => {
     async function getData() {
-      let res = await fetchData();
-      setMovies(res.data.results);
+      let res = await fetchData(addedMovies);
+      setMovies(res);
     }
     getData();
   }, [fetchData]);
+  
+  if (movies.length == 0) {
+    return <p className="loading">Loading &hellip;</p>;
+  }
 
   const opts ={
     height:"390",
@@ -31,16 +33,13 @@ function MovieSection({title, fetchData, isLargeRow, addToMovieList}) {
     }
   }
 
-// Movie play function && helper function to split movie name
-  function handleClick(movie){
-console.log(movie)
+  function handleClick(movie, id){
     if (trailerUrl || error){
       setTrailerUrl("")
       setError("")
     }else{
-      movieTrailer(movie)
+      movieTrailer(movie, { tmdbId: id})
       .then((url=>{
-        console.log("url", url)
         if (!url){
           let movie_name = splitMoivieName(movie)
           setError(`Link cannot find, please reach to https://www.themoviedb.org/search?query=${movie_name}`)
@@ -57,8 +56,8 @@ console.log(movie)
   }
 
 
-  // function to show play, add, remove icons under the poster image
-  function showActions(id) {
+   // function to show play, add, remove icons under the poster image
+   function showActions(id) {
     if (hide[0]){
       setHide([false, id]);
     }else{
@@ -69,20 +68,17 @@ console.log(movie)
 
   }
 
-  //  if movies are not finished loading, show "loading"
-  if (movies.length == 0) {
-    return <p className="loading">Loading &hellip;</p>;
-  }
-
   return (
-    <div className="section">
-      <h2>{title}</h2>
-      <div className="section-posters">
+    <>
+    <Navbar></Navbar>
+    <div className="movieList">
+      <h2>My List</h2>
+      <div className="section-posters-list">
       {movies.map(m => (
-        <>
         <MovieCard
           key={m.id}
-          image={isLargeRow? m.poster_path : m.backdrop_path}
+          id={m.id}
+          image={m.backdrop_path}
           name={m.name}
           isLargeRow={isLargeRow}
           handleClick={handleClick}
@@ -91,18 +87,20 @@ console.log(movie)
           id={m.id}
           addToMovieList={addToMovieList}
         />
-        </>
       ))}
       </div>
-        {trailerUrl && !error && !hide[0] && <>
+        {trailerUrl && !error && <>
         <YouTube videoId={trailerUrl} opts={opts}></YouTube>
+        <button>Add to MovieLists</button>
         </>}
-        {error && !hide[0] && <>
+        {error && <>
         <p className="error-msg">{error}</p>
+         <button>Add to MovieLists</button>
         </>}
         
     </div>
+    </>
   )
 }
 
-export default MovieSection
+export default MovieList

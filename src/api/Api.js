@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_KEY = "6c9e78b406678241eecc5c1693d8f502";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const base_URL = "https://api.themoviedb.org/3";
 const trending = `/trending/all/day?api_key=${API_KEY}&language=en-US`;
@@ -11,9 +11,56 @@ const horror_movies = `/discover/tv?api_key=${API_KEY}&with_genres=27`;
 const romantic_movies = `/discover/tv?api_key=${API_KEY}&with_genres=10749`;
 const documentaries = `/discover/tv?api_key=${API_KEY}&with_genres=99`;
 
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+
 class NetflixApi {
   // the token for interactive with the API will be stored here.
   static token;
+
+  static async request(endpoint, data = {}, method = "get") {
+    console.debug("API Call:", endpoint, data, method);
+
+    const url = `${BASE_URL}/${endpoint}`;
+    const headers = { Authorization: `Bearer ${NetflixApi.token}` };
+    const params = (method === "get")
+        ? data
+        : {};
+
+    try {
+      return (await axios({ url, method, data, params, headers })).data;
+    } catch (err) {
+      console.error("API Error:", err.response);
+      let message = err.response.data.error.message;
+      throw Array.isArray(message) ? message : [message];
+    }
+  }
+
+
+  static async login(data) {
+    let res = await this.request(`auth/token`, data, "post");
+    return res.token;
+  }
+
+  static async signup(data) {
+    let res = await this.request(`auth/register`, data, "post");
+    return res.token;
+  }
+
+
+  static async getCurrentUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
+  static async changeProfile(username, data) {
+    let res = await this.request(`users/${username}`, data, "patch");
+    return res.user;
+  }
+
+  static async addToMovieList(username, movie_name, movie_id) {
+    let res = await this.request(`users/${username}/${movie_name}/${movie_id}`,{}, "post");
+    return res["added"];
+  }
 
   static async getTrending() {
     let res = await axios.get(`${base_URL}${trending}`)
@@ -54,6 +101,28 @@ class NetflixApi {
     let res = await axios.get(`${base_URL}${documentaries}`)
     return res;
   }  
+
+
+  static async search(data) {
+    let all_movies = [];
+    for (let i = 0; i < data.length; i++){
+      let id = data[i][0];
+      let res = await axios.get(`${base_URL}/search/multi?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1&include_adult=false`, { params: { query: data[i][1] } })
+      if (NetflixApi.verifyID(res.data.results, id)){
+        all_movies.push(NetflixApi.verifyID(res.data.results, id));
+      }
+    }
+    return all_movies;
+  }
+
+  static verifyID(movies, id){
+    for (let i = 0; i < movies.length; i++){
+      if (movies[i]["id"] === id){
+        return movies[i];
+      }
+    }
+    return null;
+  }
 }
 
 
