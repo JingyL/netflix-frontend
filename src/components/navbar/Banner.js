@@ -74,8 +74,7 @@ function Banner({fetchData, addToMovieList}) {
     let arr = name.split(" ")
     return arr.join("%")
   }
-  
-  console.log("banner", addedMovies, [movie.id, movie.name])
+
 
   return (
     <>
@@ -107,11 +106,9 @@ function Banner({fetchData, addToMovieList}) {
 
         {trailerUrl && !error && <>
         <YouTube videoId={trailerUrl} opts={opts}></YouTube>
-        <button>Add to MovieLists</button>
         </>}
         {error && <>
         <p className="error-msg">{error}</p>
-         <button>Add to MovieLists</button>
         </>}
     </>
   )

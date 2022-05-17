@@ -1,0 +1,23 @@
+.searchFrom{
+  padding-top: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.input-group{
+  /* display:inline-block; */
+  /* display:flex; */
+}
+
+.search-icon{
+  color:white;
+  min-height: 3vh;
+  min-width: 3vw;
+  margin-top: 10px;
+}
+
+.border-1{
+  background-color: #7F5539;
+  /* min-height: 3vh;
+  min-width: 3vw; */
+}

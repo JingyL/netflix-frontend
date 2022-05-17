@@ -6,7 +6,7 @@ import MovieCard from '../movies/MovieCard';
 import "./MovieList.css"
 import Navbar from '../navbar/Navbar';
 
-function MovieList({fetchData, addToMovieList, isLargeRow}) {
+function MovieList({fetchData, addToMovieList, isLargeRow, removeFromMovieList}) {
   const { addedMovies, setAddedMovies } = useContext(UserContext);
   const [movies, setMovies] = useState([])
   const [trailerUrl, setTrailerUrl] = useState("")
@@ -15,15 +15,14 @@ function MovieList({fetchData, addToMovieList, isLargeRow}) {
 
   useEffect(() => {
     async function getData() {
+      console.log("add", addedMovies)
       let res = await fetchData(addedMovies);
+      console.log("add", res)
       setMovies(res);
     }
     getData();
   }, [fetchData]);
   
-  if (movies.length == 0) {
-    return <p className="loading">Loading &hellip;</p>;
-  }
 
   const opts ={
     height:"390",
@@ -79,23 +78,22 @@ function MovieList({fetchData, addToMovieList, isLargeRow}) {
           key={m.id}
           id={m.id}
           image={m.backdrop_path}
-          name={m.name}
+          name={m.name? m.name:m.title}
           isLargeRow={isLargeRow}
           handleClick={handleClick}
           showActions={showActions}
           hide={hide}
           id={m.id}
           addToMovieList={addToMovieList}
+          removeFromMovieList={removeFromMovieList}
         />
       ))}
       </div>
         {trailerUrl && !error && <>
         <YouTube videoId={trailerUrl} opts={opts}></YouTube>
-        <button>Add to MovieLists</button>
         </>}
         {error && <>
         <p className="error-msg">{error}</p>
-         <button>Add to MovieLists</button>
         </>}
         
     </div>

@@ -2,9 +2,10 @@
   position: fixed;
   top: 0;
   display: flex;
-  width: 98%;
+  width: 100%;
   /* justify-content: space-between; */
   padding-left: 15px;
+  background-color: black
 
 }
 
@@ -16,17 +17,28 @@
   padding-top: 10px;
 }
 
-.nav-avatar{
+/* .nav-avatar{
   position:fixed;
   right: 15px;
-  width: 30px;
+  width: 10%;
   object-fit: contain;
-  top:13px;
-}
+  top:2.5%;
+} */
 
 .nav-text{
   margin-left: 15px;
   color: white;
+  text-shadow: 1.5px 1.5px #960303;
+}
+
+.nav-text-signout{
+  position:fixed;
+  right: 15px;
+  width: 10%;
+  object-fit: contain;
+  margin-left: 15px;
+  color: rgb(250, 246, 246);
+  text-shadow: 1.5px 1.5px #355e01;
 }
 
 .nav-no-user{

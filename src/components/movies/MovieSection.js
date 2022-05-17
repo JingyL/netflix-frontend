@@ -4,16 +4,20 @@ import MovieCard from './MovieCard';
 import "./MovieSection.css";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
+import NetflixApi from '../../api/Api';
 
 
 const base_URL = "http://image.tmdb.org/t/p/original/";
 
-function MovieSection({title, fetchData, isLargeRow, addToMovieList}) {
+function MovieSection({title, fetchData, isLargeRow, addToMovieList, removeFromMovieList}) {
+  
   const [movies, setMovies] = useState([])
   const [trailerUrl, setTrailerUrl] = useState("")
   const [error, setError] = useState("")
   const [hide, setHide] = useState([true, 0])
+  const [movieOverview, setMovieOverview] = useState("")
 
+ 
 // Load movies data based on it's section
   useEffect(() => {
     async function getData() {
@@ -34,6 +38,7 @@ function MovieSection({title, fetchData, isLargeRow, addToMovieList}) {
 // Movie play function && helper function to split movie name
   function handleClick(movie){
 console.log(movie)
+setMovieOverview("")
     if (trailerUrl || error){
       setTrailerUrl("")
       setError("")
@@ -65,9 +70,21 @@ console.log(movie)
       setHide([true, 0]);
       setTrailerUrl("");
       setError("");
+      setMovieOverview("")
     }
 
   }
+
+
+  // Get Movie overview
+  async function handleInfo(data){
+    setTrailerUrl("")
+    setError("");
+    let res = await NetflixApi.searchMovie(data)
+    setMovieOverview(res.overview)
+ }
+
+
 
   //  if movies are not finished loading, show "loading"
   if (movies.length == 0) {
@@ -83,13 +100,15 @@ console.log(movie)
         <MovieCard
           key={m.id}
           image={isLargeRow? m.poster_path : m.backdrop_path}
-          name={m.name}
+          name={m.name?m.name : m.title}
           isLargeRow={isLargeRow}
           handleClick={handleClick}
           showActions={showActions}
           hide={hide}
           id={m.id}
           addToMovieList={addToMovieList}
+          handleInfo={handleInfo}
+          removeFromMovieList={removeFromMovieList}
         />
         </>
       ))}
@@ -100,6 +119,13 @@ console.log(movie)
         {error && !hide[0] && <>
         <p className="error-msg">{error}</p>
         </>}
+
+      {movieOverview 
+      ? <>
+      <p className="overview">Overview: </p>
+      <p className="overview">{movieOverview}</p>
+      </>
+    : <></>}
         
     </div>
   )
