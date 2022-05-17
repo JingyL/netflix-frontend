@@ -33,3 +33,10 @@ img.float-right.ml-5{
   float: right;
 
 }
+
+.searchcard-overview{
+  width:80%;
+  color:white;
+  text-align: left;
+  margin-left: 10%;
+}

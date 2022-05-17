@@ -1,10 +1,14 @@
+/* .signin{
+  min-height: 100vh;
+  background-color: black;
+} */
 .signin-card{
   height: 520px;
   width: 400px;
   background-color: rgba(48, 1, 1, 0);
   position: absolute;
   transform: translate(-50%,-50%);
-  top: 50%;
+  top: 60%;
   left: 50%;
   border-radius: 10px;
   backdrop-filter: blur(10px);

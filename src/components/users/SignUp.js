@@ -32,7 +32,7 @@ function SignUp({ signup }) {
   }
 
   return (
-    <div>
+    <div className="signup">
       <div className="nav-sign-up-page">
         <img className="nav-logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo"></img>
       </div>

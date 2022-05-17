@@ -1,10 +1,16 @@
+.signup{
+  min-height: 100vh;
+  background-color: black;
+}
+
+
 .signup-card{
-  height: 74%;
+  height: 100%;
   width: 40%;
   background-color: rgba(48, 1, 1, 0);
   position: absolute;
   transform: translate(-50%,-50%);
-  top: 50%;
+  top: 60%;
   left: 50%;
   border-radius: 10px;
   backdrop-filter: blur(10px);

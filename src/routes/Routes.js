@@ -20,14 +20,12 @@ function Routes({ login, signup, logout, addToMovieList, removeFromMovieList, ch
         <Navbar logout={logout}></Navbar>
         <Banner fetchData={NetflixApi.getNetflixOriginals} addToMovieList={addToMovieList}></Banner>
 
-        <MovieSection title="NETFLIX ORIGINALS" fetchData={NetflixApi.getNetflixOriginals} isLargeRow={true} addToMovieList={addToMovieList}></MovieSection>
-        <MovieSection title="Trending Now" fetchData={NetflixApi.getTrending} addToMovieList={addToMovieList}></MovieSection>
-        <MovieSection title="Top Rated" fetchData={NetflixApi.getTopRated} addToMovieList={addToMovieList}></MovieSection>
-        <MovieSection title="Comedy Movies" fetchData={NetflixApi.getComedyMovies} addToMovieList={addToMovieList}></MovieSection>
-        {/* <MovieSection title="Comedy Movies" fetchData={NetflixApi.getComedyMovies}></MovieSection>
-     <MovieSection title="Horror Movies" fetchData={NetflixApi.getHorrorMovies}></MovieSection> */}
-        <MovieSection title="Romantic Movies" fetchData={NetflixApi.getRomanticMovies} addToMovieList={addToMovieList}></MovieSection>
-        <MovieSection title="Documentaries" fetchData={NetflixApi.getDocumentaries} addToMovieList={addToMovieList}></MovieSection>
+        <MovieSection title="NETFLIX ORIGINALS" fetchData={NetflixApi.getNetflixOriginals} isLargeRow={true} addToMovieList={addToMovieList} removeFromMovieList={removeFromMovieList}></MovieSection>
+        <MovieSection title="Trending Now" fetchData={NetflixApi.getTrending} addToMovieList={addToMovieList} removeFromMovieList={removeFromMovieList}></MovieSection>
+        <MovieSection title="Top Rated" fetchData={NetflixApi.getTopRated} addToMovieList={addToMovieList} removeFromMovieList={removeFromMovieList}></MovieSection>
+        <MovieSection title="Comedy Movies" fetchData={NetflixApi.getComedyMovies} addToMovieList={addToMovieList} removeFromMovieList={removeFromMovieList}></MovieSection>
+        <MovieSection title="Romantic Movies" fetchData={NetflixApi.getRomanticMovies} addToMovieList={addToMovieList} removeFromMovieList={removeFromMovieList}></MovieSection>
+        <MovieSection title="Documentaries" fetchData={NetflixApi.getDocumentaries} addToMovieList={addToMovieList} removeFromMovieList={removeFromMovieList}></MovieSection>
       </PrivateRoute>
 
       <PrivateRoute exact path="/search">

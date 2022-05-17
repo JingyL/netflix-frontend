@@ -30,13 +30,6 @@ function SearchTM({ fetchData, addToMovieList, removeFromMovieList }) {
 
   }
 
-  const opts = {
-    height: "390",
-    width: "100%",
-    playerVars: {
-      autoplay: 1,
-    }
-  }
 
   // Movie play function && helper function to split movie name
   function handleClick(movie) {
@@ -58,7 +51,7 @@ function SearchTM({ fetchData, addToMovieList, removeFromMovieList }) {
     }
   }
 
-  console.log(trailerUrl, hide)
+  console.log(trailerUrl, hide, error)
   function splitMoivieName(name) {
     let arr = name.split(" ")
     return arr.join("%")
@@ -106,23 +99,14 @@ function SearchTM({ fetchData, addToMovieList, removeFromMovieList }) {
             addToMovieList={addToMovieList}
             handleInfo={handleInfo}
             removeFromMovieList={removeFromMovieList}
+            trailerUrl={trailerUrl}
+            error={error}
+            movieOverview={movieOverview}
           />
         </>
       ))}
 
-      {trailerUrl && !hide[0] && <>
-        <YouTube videoId={trailerUrl} opts={opts}></YouTube>
-      </>}
-      {error && !hide[0] && <>
-        <p className="error-msg">{error}</p>
-      </>}
-
-      {movieOverview
-        ? <>
-          <p className="overview">Overview: </p>
-          <p className="overview">{movieOverview}</p>
-        </>
-        : <></>}
+ 
     </div>
   )
 }
