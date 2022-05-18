@@ -1,23 +1,25 @@
 .searchFrom{
-  padding-top: 5%;
+  top:2px;
+  padding-top: 7vh;
   padding-left: 10%;
   padding-right: 10%;
+  align-items:baseline;
+  margin-bottom:15px;
 }
 
 .input-group{
-  /* display:inline-block; */
-  /* display:flex; */
+  display:flex; 
+  align-items:baseline;
 }
 
 .search-icon{
   color:white;
   min-height: 3vh;
   min-width: 3vw;
-  margin-top: 10px;
+  margin-top: 3vh;
+  cursor:pointer;
 }
 
-.border-1{
+/* .border-1{
   background-color: #7F5539;
-  /* min-height: 3vh;
-  min-width: 3vw; */
-}
+} */

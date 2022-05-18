@@ -17,6 +17,7 @@ function MovieList({fetchData, addToMovieList, isLargeRow, removeFromMovieList})
 
   console.log("movielist movies:", addedMovies)
   useEffect(() => {
+    window.scrollTo(0, 0);
     async function getData() {
       let res = await fetchData(addedMovies);
       setMovies(res);

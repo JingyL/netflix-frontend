@@ -45,32 +45,32 @@ function Profile({changeProfile}) {
 
               <div className="profile-label-font">
                 <label>First Name</label>
-                {/* <input
+                <input
                   name="firstName"
-                  value={currentUser.firstName}
+                  placeholder={currentUser.firstName}
+                  defaultValue={currentUser.firstName}
                   onChange={handleChange}
-                /> */}
-                <p className="profile-username">{currentUser.username}</p>
+                />
               </div>
 
               <div className="profile-label-font">
                 <label>Last Name</label>
-                {/* <input
+                <input
                   name="lastName"
-                  value={currentUser.lastName}
+                  placeholder={currentUser.lastName}
+                  defaultValue={currentUser.lastName}
                   onChange={handleChange}
-                /> */}
-                <p className="profile-username">{currentUser.lastName}</p>
+                />
               </div>
 
               <div className="profile-label-font">
                 <label>Email</label>
-                {/* <input
+                <input
                   name="email"
-                  value={currentUser.email}
+                  placeholder={currentUser.email}
+                  defaultValue={currentUser.email}
                   onChange={handleChange}
-                /> */}
-                <p className="profile-username">{currentUser.email}</p>
+                />
               </div>
 
               <div className="profile-label-font">

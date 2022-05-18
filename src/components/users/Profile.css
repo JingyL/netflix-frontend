@@ -1,3 +1,6 @@
+.profile{
+  min-height: 120vh;
+}
 .profile-title{
   color:white;
   font-family: 'Libre Baskerville', serif;
@@ -5,7 +8,7 @@
 }
 
 .profile-card{
-  height: 74%;
+  margin-top: 15vh;
   width: 40%;
   background-color: rgba(48, 1, 1, 0);
   position: absolute;

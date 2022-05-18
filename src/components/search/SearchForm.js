@@ -25,7 +25,7 @@ function SearchForm({searchFor}) {
       <div className="input-group">
         <input name="searchTerm" className="rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"
           value={searchTerm} onChange={handleChange} />
-        <span className="border-1" >
+        <span >
           <FontAwesomeIcon className="search-icon" icon={faSearch} type="Submit" onClick={handleSubmit}/>
         </span>
       </div>

@@ -5,7 +5,6 @@ import UserContext from "../hooks/UserContext";
 
 function Homepage() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  console.log("homepage", currentUser)
   return (
     <div className="Homepage">
       <div className="container text-center">
