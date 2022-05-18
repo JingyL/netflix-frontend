@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import UserContext from "../hooks/UserContext";
-import Navbar from "./navbar/Navbar";
-import SignIn from "./users/SignIn";
 
-function Homepage({ login }) {
+
+function Homepage() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   console.log("homepage", currentUser)
   return (
@@ -13,9 +12,7 @@ function Homepage({ login }) {
         {currentUser
           ? <Redirect to="/movies"></Redirect>
           : <>
-            <Navbar></Navbar>
-            <SignIn login={login}></SignIn>
-
+            <Redirect to="/signin"></Redirect>
           </>}
       </div>
     </div>

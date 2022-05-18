@@ -1,14 +1,15 @@
 /* .signin{
-  min-height: 100vh;
+  min-height: 120vh;
   background-color: black;
 } */
 .signin-card{
-  height: 520px;
-  width: 400px;
+  /* height: 520px; */
+  width: 40%;
   background-color: rgba(48, 1, 1, 0);
   position: absolute;
   transform: translate(-50%,-50%);
-  top: 60%;
+  top: 50%;
+  /* margin-top: 20%; */
   left: 50%;
   border-radius: 10px;
   backdrop-filter: blur(10px);
