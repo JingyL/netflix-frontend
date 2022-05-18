@@ -1,11 +1,10 @@
 import React,  { useContext}  from 'react';
 import "./Navbar.css";
 import UserContext from "../../hooks/UserContext";
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Navbar({ logout }) {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-
 
   return (
     <>
@@ -16,8 +15,7 @@ function Navbar({ logout }) {
           <NavLink to="/search" style={{ textDecoration: 'none' }}><h3 className="nav-text">Search</h3></NavLink>
             <NavLink to="/mylist" style={{ textDecoration: 'none' }}><h3 className="nav-text">My List</h3></NavLink>
             <NavLink to="/profile" style={{ textDecoration: 'none' }}><h3 className="nav-text">Profile</h3></NavLink>
-            {/* <img className="nav-avatar" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="Netflix Avatar"></img> */}
-            <NavLink to="/"  className="nav-text-signout" style={{ textDecoration: 'none' }} onClick={logout}><h3>Sign Out</h3></NavLink>
+            <NavLink to="/signin"  className="nav-text-signout" style={{ textDecoration: 'none' }} onClick={logout}><h3>Sign Out</h3></NavLink>
           </div>
         </>
         : <></>

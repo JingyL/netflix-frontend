@@ -1,21 +1,18 @@
 import './App.css';
 import NetflixApi from './api/Api';
 import React, { useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Redirect, useHistory } from "react-router-dom";
 import Routes from './routes/Routes';
 import jwt_decode from "jwt-decode";
 import UserContext from "./hooks/UserContext";
 import { useState } from 'react';
 import useLocalStorage from './hooks/useLocalStorage';
 
-
-
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage("token");
   const [addedMovies, setAddedMovies] = useState([]);
   const [infoLoaded, setInfoLoaded] = useState(false);
-
 
   useEffect(function loadUserInfo() {
     async function getCurrentUser() {
@@ -62,12 +59,9 @@ function App() {
     }
   }
 
-
-
   async function addToMovieList(movie_name, movie_id) {
     try {
       let res = await NetflixApi.addToMovieList(currentUser.username, movie_name, movie_id);
-      console.log("addtomovie", res)
       setAddedMovies(f => ([...f, [parseInt(res.movie_id), res.movie_name]]));
       return { "success": "Added Successfuly!" }
     } catch (errors) {
@@ -75,11 +69,10 @@ function App() {
     }
   }
 
-
   async function removeFromMovieList(movie_name, movie_id) {
     try {
       let res = await NetflixApi.removeFromMovieList(currentUser.username, movie_name, movie_id);
-      setAddedMovies(addedMovies.filter(f => !JSON.stringify(f).indexOf(JSON.stringify([res.id, res.name]))));
+      setAddedMovies(addedMovies.filter(f => JSON.stringify(f).indexOf(JSON.stringify(movie_id)) < 1));
       return { "success": "removed Successfuly!" }
     } catch (errors) {
       return { "error": errors };
@@ -96,9 +89,7 @@ function App() {
     }
   }
 
-
   if (!infoLoaded) return <p>Loading</p>;
-
 
   return (
     <div className="App">

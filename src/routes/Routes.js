@@ -9,16 +9,15 @@ import MovieList from "../components/users/MovieList";
 import Profile from "../components/users/Profile";
 import SignIn from "../components/users/SignIn";
 import SignUp from "../components/users/SignUp";
-
 import PrivateRoute from "./PrivateRoute";
 
-function Routes({ login, signup, logout, addToMovieList, removeFromMovieList, changeProfile}) {
+function Routes({ login, signup, logout, addToMovieList, removeFromMovieList, changeProfile }) {
 
   return (
     <Switch>
       <PrivateRoute exact path="/movies">Ï
         <Navbar logout={logout}></Navbar>
-        <Banner fetchData={NetflixApi.getNetflixOriginals} addToMovieList={addToMovieList}></Banner>
+        <Banner fetchData={NetflixApi.getNetflixOriginals} addToMovieList={addToMovieList} removeFromMovieList={removeFromMovieList}></Banner>
 
         <MovieSection title="NETFLIX ORIGINALS" fetchData={NetflixApi.getNetflixOriginals} isLargeRow={true} addToMovieList={addToMovieList} removeFromMovieList={removeFromMovieList}></MovieSection>
         <MovieSection title="Trending Now" fetchData={NetflixApi.getTrending} addToMovieList={addToMovieList} removeFromMovieList={removeFromMovieList}></MovieSection>
@@ -43,6 +42,7 @@ function Routes({ login, signup, logout, addToMovieList, removeFromMovieList, ch
       <Route exact path="/">
         <Homepage login={login}></Homepage>
       </Route>
+
       <Route exact path="/signin">
         <SignIn login={login}></SignIn>
       </Route>
