@@ -80,7 +80,6 @@ function Banner({ fetchData, addToMovieList, removeFromMovieList }) {
   async function handleRemove(e) {
     e.preventDefault();
     let name = movie.name || movie.title;
-    console.log("banner", name, movie.id)
     let response = await removeFromMovieList(name, movie.id);
     if (response["success"]) {
       setSuccessMsg("")

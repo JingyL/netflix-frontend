@@ -17,7 +17,6 @@ function Profile({changeProfile}) {
 
   function handleChange(e) {
     e.persist();
-    console.log(e.target.value)
     setFormData(f => ({ ...f, [e.target.name]: e.target.value }));
   }
 

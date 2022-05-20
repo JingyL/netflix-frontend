@@ -19,7 +19,6 @@ function MovieActionForList({ id, name, handleClick, addToMovieList, removeFromM
     e.preventDefault();
     setRemoveSuccessMsg("");
     setRemoveErorMsg("");
-    console.log("llllll")
     let response = await removeFromMovieList(name, id);
     console.log(response)
     if (response["success"]) {

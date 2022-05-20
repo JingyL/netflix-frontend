@@ -16,14 +16,12 @@ function SignUp({ signup }) {
 
   function handleChange(e) {
     e.persist();
-    console.log(e.target.value)
     setFormData(f => ({ ...f, [e.target.name]: e.target.value }));
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     let response = await signup(formData);
-    console.log(response);
     if (response["success"]) {
       history.push("/");
     } else {

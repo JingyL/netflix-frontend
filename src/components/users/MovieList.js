@@ -15,7 +15,6 @@ function MovieList({fetchData, addToMovieList, isLargeRow, removeFromMovieList})
   const [hide, setHide] = useState([true, 0])
   const [movieOverview, setMovieOverview] = useState("")
 
-  console.log("movielist movies:", addedMovies)
   useEffect(() => {
     window.scrollTo(0, 0);
     async function getData() {

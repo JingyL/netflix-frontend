@@ -37,7 +37,6 @@ function App() {
     try {
       let token = await NetflixApi.login(data);
       setToken(token);
-      console.log("signin", token)
       return { "success": token };
     } catch (errors) {
       return { "error": errors };

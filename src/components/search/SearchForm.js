@@ -8,7 +8,6 @@ function SearchForm({searchFor}) {
   const [searchTerm, setSearchTerm] = useState("");
   function handleChange(e) {
     e.persist();
-    console.log(e.target.value)
     setSearchTerm(e.target.value);
   }
 
