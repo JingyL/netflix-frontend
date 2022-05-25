@@ -50,6 +50,7 @@ function App() {
       // get current user
       await getUser(token)     
       return { "success": token };
+      
     } catch (errors) {
       return { "error": errors };
     }
