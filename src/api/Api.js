@@ -70,7 +70,6 @@ class NetflixApi {
 
   static async getTrending() {
     let res = await axios.get(`${base_URL}${trending}`)
-    console.log(res)
     return res;
   }
 

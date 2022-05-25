@@ -16,16 +16,12 @@ function App() {
 
   useEffect(function loadUserInfo() {
     async function getCurrentUser() {
+      if (currentUser){
+        setInfoLoaded(true);
+        return;
+      }
       if (token) {
-        try {
-          let { username } = jwt_decode(token);
-          NetflixApi.token = token;
-          let currentUser = await NetflixApi.getCurrentUser(username);
-          setCurrentUser(currentUser);
-          setAddedMovies(currentUser.movielist)
-        } catch (err) {
-          setCurrentUser(null);
-        }
+        await getUser(token);
       }
       setInfoLoaded(true);
     }
@@ -37,6 +33,22 @@ function App() {
     try {
       let token = await NetflixApi.login(data);
       setToken(token);
+      // get current user
+      await getUser(token)
+      return { "success": token };
+      
+    } catch (errors) {
+      return { "error": errors };
+    }
+  }
+
+  async function signup(data) {
+    try {
+      let token = await NetflixApi.signup(data);;
+      setToken(token);
+
+      // get current user
+      await getUser(token)     
       return { "success": token };
     } catch (errors) {
       return { "error": errors };
@@ -48,13 +60,15 @@ function App() {
     setToken(null);
   }
 
-  async function signup(data) {
+  async function getUser(token){
     try {
-      let token = await NetflixApi.signup(data);;
-      setToken(token);
-      return { "success": token };
-    } catch (errors) {
-      return { "error": errors };
+      let { username } = jwt_decode(token);
+      NetflixApi.token = token;
+      let currentUser = await NetflixApi.getCurrentUser(username);
+      setCurrentUser(currentUser);
+      setAddedMovies(currentUser.movielist)
+    } catch (err) {
+      setCurrentUser(null);
     }
   }
 
