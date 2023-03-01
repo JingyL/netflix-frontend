@@ -59,7 +59,7 @@ function SignIn({ login }) {
               />
             </div>
 
-            {formErrors != ""
+            {formErrors !== ""
               ? <p className="danger" messages={formErrors}>{formErrors}</p>
               : null}
 

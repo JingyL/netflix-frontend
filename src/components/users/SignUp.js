@@ -79,7 +79,7 @@ function SignUp({ signup }) {
               />
             </div>
 
-            {formErrors != ""
+            {formErrors !== ""
               ? <p className="danger" messages={formErrors}>{formErrors}</p>
               : null}
 
