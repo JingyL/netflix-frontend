@@ -19,7 +19,8 @@
     "react-router-dom": "^5.2.1",
     "react-youtube": "^9.0.1",
     "test-utils": "^1.1.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.75.0"
   },
   "scripts": {
     "start": "react-scripts start",
