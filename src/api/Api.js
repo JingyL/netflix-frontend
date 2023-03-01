@@ -9,7 +9,7 @@ const comedy_movies = `/discover/tv?api_key=${API_KEY}&with_genres=35`;
 const romantic_movies = `/discover/tv?api_key=${API_KEY}&with_genres=10749`;
 const documentaries = `/discover/tv?api_key=${API_KEY}&with_genres=99`;
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+const BASE_URL = "https://netflix-clone-api-5krp.onrender.com"||process.env.REACT_APP_BASE_URL||"http://localhost:3001";
 
 class NetflixApi {
   // the token for interactive with the API will be stored here.
