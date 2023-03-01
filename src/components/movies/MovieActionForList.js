@@ -35,12 +35,13 @@ function MovieActionForList({ id, name, handleClick, addToMovieList, removeFromM
     <div className="movie-action">
 
       <FontAwesomeIcon className="icon" icon={faPlay} onClick={() => handleClick(name)} />
-      {
+      {/* {
         JSON.stringify(addedMovies).indexOf(JSON.stringify([id, name])) > -1 || addSuccessMsg
           ? <FontAwesomeIcon className="icon" icon={faMinus} onClick={handleRemove} />
           : <FontAwesomeIcon className="icon" icon={faPlus} />
 
-      }
+      } */}
+      <FontAwesomeIcon className="icon" icon={faMinus} onClick={handleRemove} />
       <FontAwesomeIcon className="icon" icon={faCircleInfo} onClick={() => handleInfo([id, name])} />
       {JSON.stringify(addedMovies).indexOf(JSON.stringify([id, name])) > -1 || addErrorMsg
         ? <p style={{ color: 'white' }}>{addErrorMsg}</p>

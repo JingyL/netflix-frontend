@@ -19,6 +19,7 @@
     "react-router-dom": "^5.2.1",
     "react-scripts": "5.0.1",
     "react-youtube": "^9.0.1",
+    "test-utils": "^1.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

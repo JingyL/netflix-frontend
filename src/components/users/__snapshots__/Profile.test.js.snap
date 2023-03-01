@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="profile"
+  >
+    <div
+      class="nav"
+    >
+      <a
+        class="nav-logo"
+        href="/movies"
+      >
+        <img
+          alt="Netflix Logo"
+          class="nav-logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+        />
+      </a>
+      <a
+        href="/search"
+        style="text-decoration: none;"
+      >
+        <h3
+          class="nav-text"
+        >
+          Search
+        </h3>
+      </a>
+      <a
+        href="/mylist"
+        style="text-decoration: none;"
+      >
+        <h3
+          class="nav-text"
+        >
+          My List
+        </h3>
+      </a>
+      <a
+        href="/profile"
+        style="text-decoration: none;"
+      >
+        <h3
+          class="nav-text"
+        >
+          Profile
+        </h3>
+      </a>
+      <a
+        class="nav-text-signout"
+        href="/signin"
+        style="text-decoration: none;"
+      >
+        <h3>
+          Sign Out
+        </h3>
+      </a>
+    </div>
+    <div
+      class="profile-card"
+    >
+      <h3
+        class="profile-title"
+      >
+        Profile
+      </h3>
+      <form>
+        <div
+          class="profile-label-font"
+        >
+          <label>
+            Username
+          </label>
+          <p
+            class="profile-username"
+          >
+            testuser
+          </p>
+        </div>
+        <div
+          class="profile-label-font"
+        >
+          <label>
+            First Name
+          </label>
+          <input
+            name="firstName"
+            value=""
+          />
+        </div>
+        <div
+          class="profile-label-font"
+        >
+          <label>
+            Last Name
+          </label>
+          <input
+            name="lastName"
+            value=""
+          />
+        </div>
+        <div
+          class="profile-label-font"
+        >
+          <label>
+            Email
+          </label>
+          <input
+            name="email"
+            placeholder="test@test.net"
+            value="test@test.net"
+          />
+        </div>
+        <div
+          class="profile-label-font"
+        >
+          <label>
+            Confirm password to make changes:
+          </label>
+          <input
+            name="password"
+            type="password"
+            value=""
+          />
+        </div>
+        <p
+          class="successMsg"
+        />
+        <button
+          class="profile-page-btn"
+        >
+          Save Changes
+        </button>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;

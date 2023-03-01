@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="signup"
+  >
+    <div
+      class="nav-sign-up-page"
+    >
+      <img
+        alt="Netflix Logo"
+        class="nav-logo"
+        src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+      />
+    </div>
+    <div
+      class="signup-card"
+    >
+      <div>
+        <form>
+          <div
+            class="signup-label-font"
+          >
+            <label>
+              Username
+            </label>
+            <input
+              name="username"
+              value=""
+            />
+          </div>
+          <div
+            class="signup-label-font"
+          >
+            <label>
+              First Name
+            </label>
+            <input
+              name="firstName"
+              value=""
+            />
+          </div>
+          <div
+            class="signup-label-font"
+          >
+            <label>
+              Last Name
+            </label>
+            <input
+              name="lastName"
+              value=""
+            />
+          </div>
+          <div
+            class="signup-label-font"
+          >
+            <label>
+              Email
+            </label>
+            <input
+              name="email"
+              value=""
+            />
+          </div>
+          <div
+            class="signup-label-font"
+          >
+            <label>
+              Password:
+            </label>
+            <input
+              name="password"
+              type="password"
+              value=""
+            />
+          </div>
+          <button
+            class="signup-page-btn"
+          >
+            Sign up
+          </button>
+          <a
+            class="signin-btn"
+            href="/signin"
+          >
+            Sign In
+          </a>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
